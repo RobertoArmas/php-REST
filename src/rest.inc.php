@@ -4,6 +4,7 @@
 * File : Rest.inc.php
 * Author : Arun Kumar Sekar
 */
+namespace RAWebService;
 
 class REST {
 
