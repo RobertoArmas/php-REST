@@ -90,7 +90,7 @@ class REST {
 	private function inputs() {
 		switch ( $this->get_request_method() ) {
 		case "POST":
-			$this->_request = $this->cleanInputs( $_POST );
+			$this->_request = json_decode(stripslashes(file_get_contents("php://input")),true);
 			break;
 		case "GET":
 		case "DELETE":
@@ -125,6 +125,9 @@ class REST {
 	private function set_headers() {
 		header( "HTTP/1.1 ".$this->_code." ".$this->get_status_message() );
 		header( "Content-Type:".$this->_content_type );
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: GET, POST,OPTIONS');
+		header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 	}
 
 }
